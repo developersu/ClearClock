@@ -105,8 +105,8 @@ PlasmoidItem {
                 id: dayLabel
                 visible: plasmoid.configuration.showDayDisplay
                 anchors.centerIn: parent
-
-                text: Qt.formatDate(currentDateTime, "dddd")
+                
+                text: currentDateTime.toLocaleString(Qt.locale(), "dddd")
 
                 color: plasmoid.configuration.dayFontColor
                 font.family: if (plasmoid.configuration.dayFontFamily === "ccdefault") fontSmooch.name
@@ -131,7 +131,7 @@ PlasmoidItem {
             visible: plasmoid.configuration.showDateDisplay
             Layout.alignment: Qt.AlignHCenter
 
-            text: Qt.formatDate(currentDateTime, plasmoid.configuration.dateCustomDateFormat)
+            text: currentDateTime.toLocaleString(Qt.locale(), plasmoid.configuration.dateCustomDateFormat)
 
             color: plasmoid.configuration.dateFontColor
             font.family: if (plasmoid.configuration.dateFontFamily === "ccdefault") fontOutfitRegular.name
