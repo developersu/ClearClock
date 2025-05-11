@@ -1,4 +1,4 @@
- #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 get_project_id() {
     line=$(grep "^X-KDE-PluginInfo-Name" package/metadata.desktop)

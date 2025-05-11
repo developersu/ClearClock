@@ -35,13 +35,13 @@ PlasmoidItem {
     }
 
     FontLoader {
-        id: fontOutfitRegular
-        source: "../fonts/Outfit-Regular.ttf"
+        id: fontPlayRegular
+        source: "../fonts/Play-Regular.ttf"
     }
 
     FontLoader {
-        id: fontSmooch
-        source: "../fonts/Smooch-Regular.ttf"
+        id: fontCaveat
+        source: "../fonts/Caveat-Bold.ttf"
     }
 
     fullRepresentation: ColumnLayout {
@@ -77,9 +77,9 @@ PlasmoidItem {
                 property var getTextFormat: {
                     var AMPM = plasmoid.configuration.clockUse24hFormat ? "" : " AP"
                     if (plasmoid.configuration.clockShowSeconds)
-                        return Qt.formatTime(currentDateTime, "hh.mm.ss" + AMPM).split(".").join(plasmoid.configuration.clockSeparator)
+                        return Qt.formatTime(currentDateTime, "hh:mm:ss" + AMPM).split(".").join(plasmoid.configuration.clockSeparator)
                     else
-                        return Qt.formatTime(currentDateTime, "hh.mm" + AMPM).split(".").join(plasmoid.configuration.clockSeparator)
+                        return Qt.formatTime(currentDateTime, "hh:mm" + AMPM).split(".").join(plasmoid.configuration.clockSeparator)
                 }
 
                 text: getTextFormat
@@ -106,10 +106,10 @@ PlasmoidItem {
                 visible: plasmoid.configuration.showDayDisplay
                 anchors.centerIn: parent
 
-                text: Qt.formatDate(currentDateTime, "dddd")
+                text: currentDateTime.toLocaleString(Qt.locale(), "dddd")
 
                 color: plasmoid.configuration.dayFontColor
-                font.family: if (plasmoid.configuration.dayFontFamily === "ccdefault") fontSmooch.name
+                font.family: if (plasmoid.configuration.dayFontFamily === "ccdefault") fontCaveat.name
                              else plasmoid.configuration.dayFontFamily
                 font.bold: plasmoid.configuration.dayBoldText
                 font.italic: plasmoid.configuration.dayItalicText
@@ -131,10 +131,10 @@ PlasmoidItem {
             visible: plasmoid.configuration.showDateDisplay
             Layout.alignment: Qt.AlignHCenter
 
-            text: Qt.formatDate(currentDateTime, plasmoid.configuration.dateCustomDateFormat)
+            text: currentDateTime.toLocaleString(Qt.locale(), plasmoid.configuration.dateCustomDateFormat)
 
             color: plasmoid.configuration.dateFontColor
-            font.family: if (plasmoid.configuration.dateFontFamily === "ccdefault") fontOutfitRegular.name
+            font.family: if (plasmoid.configuration.dateFontFamily === "ccdefault") fontPlayRegular.name
                          else plasmoid.configuration.dateFontFamily
             font.bold: plasmoid.configuration.dateBoldText
             font.italic: plasmoid.configuration.dateItalicText
